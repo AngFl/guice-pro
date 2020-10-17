@@ -1,7 +1,11 @@
 package club.example.guice;
 
+// import club.example.guice.demo.ApplicationApplet;
+// import club.example.guice.demo.configure.PrinterConfiguration;
+
 import club.example.guice.demo.ApplicationApplet;
-import club.example.guice.demo.configuare.PrinterConfiguration;
+import club.example.guice.demo.module.MainModule;
+import com.google.inject.Guice;
 
 public class Application {
     /**
@@ -12,7 +16,9 @@ public class Application {
      * @param args String[]
      */
     public static void main(String[] args) {
-        ApplicationApplet applicationApplet = PrinterConfiguration.getMainApplet();
+        // ApplicationApplet applicationApplet = PrinterConfiguration.getMainApplet();
+        ApplicationApplet applicationApplet = Guice.createInjector(new MainModule())
+                .getInstance(ApplicationApplet.class);
         applicationApplet.run();
     }
 }

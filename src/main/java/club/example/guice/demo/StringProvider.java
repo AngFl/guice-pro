@@ -1,6 +1,6 @@
 package club.example.guice.demo;
 
-public interface StringProvider {
-
-    String get();
-}
+//public interface StringProvider {
+//
+//    String get();
+//}

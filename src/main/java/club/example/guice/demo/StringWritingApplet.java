@@ -1,12 +1,17 @@
 package club.example.guice.demo;
 
+import com.google.inject.Provider;
+
+import javax.inject.Inject;
+
 public class StringWritingApplet implements ApplicationApplet {
 
     private final ApplicationDestination destination;
 
-    private final StringProvider stringProvider;
+    private final Provider<String> stringProvider;
 
-    public StringWritingApplet(ApplicationDestination destination, StringProvider stringProvider) {
+    @Inject
+    public StringWritingApplet(ApplicationDestination destination, Provider<String> stringProvider) {
         this.destination = destination;
         this.stringProvider = stringProvider;
     }
