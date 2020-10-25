@@ -1,5 +1,6 @@
 package club.example.guice.demo.module;
 
+import club.example.guice.command.annotation.CommandArg;
 import club.example.guice.demo.ApplicationApplet;
 import club.example.guice.demo.ApplicationDestination;
 import club.example.guice.demo.PrintStringWriterDestination;
@@ -8,6 +9,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 
 import java.io.PrintStream;
+import java.util.List;
 
 public class MainModule extends AbstractModule {
 
@@ -18,7 +20,10 @@ public class MainModule extends AbstractModule {
         bind(PrintStream.class).toInstance(System.out);
     }
 
-    @Provides private String getString() {
-        return "Google Guice";
+    @Provides private String getString(@CommandArg List<String> commandArgs) {
+        if (null == commandArgs || commandArgs.size() == 0) {
+            return "no arguments";
+        }
+        return commandArgs.get(0);
     }
 }
