@@ -5,6 +5,7 @@ import club.example.guice.serve.OrderService;
 import club.example.guice.serve.PaymentService;
 import club.example.guice.serve.PriceService;
 import club.example.guice.serve.RequestTypeProvider;
+import club.example.guice.serve.annotation.SequenceId;
 import club.example.guice.serve.impl.OrderServiceImpl;
 import club.example.guice.serve.impl.PaymentServiceImpl;
 import club.example.guice.serve.impl.PriceServiceImpl;
@@ -27,6 +28,10 @@ public class ServeModule extends AbstractModule {
 
         // provider 绑定
         bind(HttpRequestHandler.class).toProvider(new RequestTypeProvider());
+
+        // 带有注解标注的绑定
+        bind(String.class).annotatedWith(SequenceId.class)
+                .toInstance(UUID.randomUUID().toString());
     }
 
     @Provides

@@ -13,6 +13,9 @@ public class HttpRequestHandlerTest {
     @Inject
     private HttpRequestHandler httpRequestHandler;
 
+    @Inject
+    private CommandLineHandler commandLineHandler;
+
     @Before
     public void setUp() {
         Guice.createInjector(new ServeModule())
@@ -23,5 +26,12 @@ public class HttpRequestHandlerTest {
     public void testSupportedHandleType() {
         boolean supported = httpRequestHandler.supported("application/xml");
         Assert.assertNotEquals(supported, false);
+    }
+
+    @Test
+    public void testGetSequence() {
+        String sequence = commandLineHandler.getSequence();
+        System.out.println(sequence);
+        Assert.assertNotNull(sequence);
     }
 }
